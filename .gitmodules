@@ -1,0 +1,100 @@
+[submodule "debian/modules/nginx-cache-purge"]
+	path = debian/modules/nginx-cache-purge
+	url = https://github.com/FRiCKLE/ngx_cache_purge.git
+[submodule "debian/modules/nginx-development-kit"]
+	path = debian/modules/nginx-development-kit
+	url = https://github.com/simpl/ngx_devel_kit.git
+[submodule "debian/modules/nginx-echo"]
+	path = debian/modules/nginx-echo
+	url = https://github.com/agentzh/echo-nginx-module.git
+[submodule "debian/modules/nginx-lua"]
+	path = debian/modules/nginx-lua
+	url = https://github.com/chaoslawful/lua-nginx-module.git
+[submodule "debian/modules/nginx-upstream-fair"]
+	path = debian/modules/nginx-upstream-fair
+	url = https://github.com/gnosek/nginx-upstream-fair.git
+[submodule "debian/modules/nginx-upload-progress"]
+	path = debian/modules/nginx-upload-progress
+	url = https://github.com/masterzen/nginx-upload-progress-module.git
+[submodule "debian/modules/nginx-dav-ext-module"]
+	path = debian/modules/nginx-dav-ext-module
+	url = https://github.com/arut/nginx-dav-ext-module.git
+[submodule "debian/modules/ngx_http_pinba_module"]
+	path = debian/modules/ngx_http_pinba_module
+	url = https://github.com/tony2001/ngx_http_pinba_module.git
+[submodule "debian/modules/ngx_http_substitutions_filter_module"]
+	path = debian/modules/ngx_http_substitutions_filter_module
+	url = https://github.com/yaoweibin/ngx_http_substitutions_filter_module.git
+[submodule "debian/modules/ngx-fancyindex"]
+	path = debian/modules/ngx-fancyindex
+	url = https://github.com/aperezdc/ngx-fancyindex.git
+[submodule "debian/modules/nginx-auth-ldap"]
+	path = debian/modules/nginx-auth-ldap
+	url = https://github.com/kvspb/nginx-auth-ldap.git
+[submodule "debian/modules/nginx-rtmp-module"]
+	path = debian/modules/nginx-rtmp-module
+	url = https://github.com/arut/nginx-rtmp-module.git
+[submodule "debian/modules/nginx-postgres"]
+	path = debian/modules/nginx-postgres
+	url = https://github.com/FRiCKLE/ngx_postgres.git
+[submodule "debian/modules/nginx-rds-csv"]
+	path = debian/modules/nginx-rds-csv
+	url = https://github.com/openresty/rds-csv-nginx-module.git
+[submodule "debian/modules/nginx-rds-json"]
+	path = debian/modules/nginx-rds-json
+	url = https://github.com/openresty/rds-json-nginx-module.git
+[submodule "debian/modules/nginx-redis2"]
+	path = debian/modules/nginx-redis2
+	url = https://github.com/openresty/redis2-nginx-module.git
+[submodule "debian/modules/nginx-sla"]
+	path = debian/modules/nginx-sla
+	url = https://github.com/goldenclone/nginx-sla.git
+[submodule "debian/modules/nginx-tile"]
+	path = debian/modules/nginx-tile
+	url = https://github.com/mayson/ngx_http_tile_module.git
+[submodule "debian/modules/nginx-zeromq"]
+	path = debian/modules/nginx-zeromq
+	url = https://github.com/FRiCKLE/ngx_zeromq.git
+[submodule "debian/modules/nginx-repeater"]
+	path = debian/modules/nginx-repeater
+	url = https://github.com/denisio/mod_repeater.git
+[submodule "debian/modules/nginx-logif"]
+	path = debian/modules/nginx-logif
+	url = https://github.com/cfsego/ngx_log_if.git
+[submodule "debian/modules/ngx_pagespeed"]
+	path = debian/modules/ngx_pagespeed
+	url = https://github.com/pagespeed/ngx_pagespeed.git
+[submodule "debian/modules/ngx_http_accounting"]
+	path = debian/modules/ngx_http_accounting
+	url = https://github.com/Lax/ngx_http_accounting_module.git
+[submodule "debian/modules/nginx-array-var"]
+	path = debian/modules/nginx-array-var
+	url = https://github.com/openresty/array-var-nginx-module.git
+[submodule "debian/modules/nginx-headers-more"]
+	path = debian/modules/nginx-headers-more
+	url = https://github.com/openresty/headers-more-nginx-module.git
+[submodule "debian/modules/ngx_ip_tos"]
+	path = debian/modules/ngx_ip_tos
+	url = https://github.com/catap/ngx_http_ip_tos_filter_module.git
+[submodule "debian/modules/nginx-memc"]
+	path = debian/modules/nginx-memc
+	url = https://github.com/openresty/memc-nginx-module.git
+[submodule "debian/modules/nginx-srcache"]
+	path = debian/modules/nginx-srcache
+	url = https://github.com/openresty/srcache-nginx-module.git
+[submodule "debian/modules/nginx-upload"]
+	path = debian/modules/nginx-upload
+	url = https://github.com/vkholodkov/nginx-upload-module.git
+
+[submodule "debian/modules/nginx-auth-pam"]
+	path = debian/modules/nginx-auth-pam
+	url = https://github.com/stogh/ngx_http_auth_pam_module
+[submodule "debian/modules/headers-more-nginx-module"]
+	path = debian/modules/headers-more-nginx-module
+	url = https://github.com/agentzh/headers-more-nginx-module
+[submodule "debian/modules/nginx-http-push"]
+	path = debian/modules/nginx-http-push
+	url = https://github.com/slact/nginx_http_push_module
+[submodule "debian/modules/nginx-push-stream"]
+	path = debian/modules/nginx-push-stream
+	url = https://github.com/wandenberg/nginx-push-stream-module.git

@@ -1,0 +1,402 @@
+Source: nginx
+Section: httpd
+Priority: optional
+Maintainer: Kartik Mistry <kartik@debian.org>
+Uploaders: Jose Parrella <bureado@debian.org>,
+           Fabio Tranchitella <kobold@debian.org>,
+           Michael Lustfield <michael@lustfield.net>,
+           Dmitry E. Oboukhov <unera@debian.org>,
+           Cyril Lavier <cyril.lavier@davromaniak.eu>,
+           Christos Trochalakis <yatiohi@ideopolis.gr>,
+           Sergei Antipov <greendayonfire@gmail.com>
+Build-Depends: autotools-dev,
+               curl,
+               debhelper (>= 9),
+               dh-systemd (>= 1.5),
+               dpkg-dev (>= 1.15.5),
+               libcurl4-openssl-dev,
+               libexpat-dev,
+               libgd-dev,
+               libgeoip-dev,
+               libldap2-dev,
+               libluajit-5.1-dev [i386 amd64 kfreebsd-i386 armel armhf powerpc powerpcspe mips mipsel] | liblua5.1-0-dev,
+               libmhash-dev,
+               libossp-uuid-dev,
+               libpam0g-dev,
+               libpcre3-dev,
+               libperl-dev,
+               libssl-dev,
+               libxslt1-dev,
+               libpq-dev,
+               po-debconf,
+               zlib1g-dev
+Standards-Version: 3.9.8.0
+Homepage: http://nginx.net
+Vcs-Git: https://anonscm.debian.org/cgit/collab-maint/nginx.git
+Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/nginx.git
+
+Package: nginx
+Architecture: all
+Depends: nginx-full   (>= ${source:Version}) |
+         nginx-light  (>= ${source:Version}) |
+         nginx-extras (>= ${source:Version}) |
+         nginx-dev-steroidz (>= ${source:Version}),
+         nginx-full   (<< ${source:Version}.1~) |
+         nginx-light  (<< ${source:Version}.1~) |
+         nginx-extras (<< ${source:Version}.1~) |
+         nginx-dev-steroidz (<< ${source:Version}.1~),
+         ${misc:Depends}
+Description: small, powerful, scalable web/proxy server
+ Nginx ("engine X") is a high-performance web and reverse proxy server
+ created by Igor Sysoev. It can be used both as a standalone web server
+ and as a proxy to reduce the load on back-end HTTP or mail servers.
+ .
+ This is a dependency package to install either nginx-full (by default) or
+ nginx-light.
+
+Package: nginx-doc
+Architecture: all
+Multi-Arch: foreign
+Section: doc
+Depends: lsb-base (>= 3.2-14), ${misc:Depends}
+Description: small, powerful, scalable web/proxy server - documentation
+ Nginx ("engine X") is a high-performance web and reverse proxy server
+ created by Igor Sysoev. It can be used both as a standalone web server
+ and as a proxy to reduce the load on back-end HTTP or mail servers.
+ .
+ This package provides extra documentation to help unleash the power of Nginx.
+
+Package: nginx-common
+Architecture: all
+Multi-Arch: foreign
+Depends: lsb-base (>= 3.2-14), ${misc:Depends}
+Replaces: nginx (<< 0.8.54-4),
+          nginx-extras (<< 0.8.54-4),
+          nginx-full (<< 0.8.54-4),
+          nginx-light (<< 0.8.54-4)
+Breaks: nginx (<< 0.8.54-4),
+        nginx-extras (<< 0.8.54-4),
+        nginx-full (<< 0.8.54-4),
+        nginx-light (<< 0.8.54-4)
+Suggests: fcgiwrap, nginx-doc, ssl-cert
+Description: small, powerful, scalable web/proxy server - common files
+ Nginx ("engine X") is a high-performance web and reverse proxy server
+ created by Igor Sysoev. It can be used both as a standalone web server
+ and as a proxy to reduce the load on back-end HTTP or mail servers.
+ .
+ This package contains base configuration files used by all versions of
+ nginx.
+
+Package: nginx-full
+Architecture: any
+Depends: nginx-common (= ${source:Version}),
+         libnginx-mod-http-geoip (= ${binary:Version}),
+         libnginx-mod-http-image-filter (= ${binary:Version}),
+         libnginx-mod-http-xslt-filter (= ${binary:Version}),
+         libnginx-mod-mail (= ${binary:Version}),
+         libnginx-mod-stream (= ${binary:Version}),
+         libnginx-mod-http-auth-pam (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Breaks: nginx (<< 1.4.5-1)
+Provides: httpd, httpd-cgi, nginx
+Conflicts: nginx-extras, nginx-light, nginx-dev-steroidz
+Suggests: nginx-doc (= ${source:Version})
+Description: nginx web/proxy server (standard version)
+ Nginx ("engine X") is a high-performance web and reverse proxy server
+ created by Igor Sysoev. It can be used both as a standalone web server
+ and as a proxy to reduce the load on back-end HTTP or mail servers.
+ .
+ This package provides a version of nginx with the complete set of
+ standard modules included (but omitting some of those included in
+ nginx-extra).
+ .
+ STANDARD HTTP MODULES: Core, Access, Auth Basic, Auto Index, Browser, Empty
+ GIF, FastCGI, Geo, Limit Connections, Limit Requests, Map, Memcached, Proxy,
+ Referer, Rewrite, SCGI, Split Clients, UWSGI.
+ .
+ OPTIONAL HTTP MODULES: Addition, Auth Request, Charset, WebDAV, GeoIP, Gunzip,
+ Gzip, Gzip Precompression, Headers, HTTP/2, Image Filter, Index, Log, Real IP,
+ SSI, SSL, Stream, Stub Status, Substitution, Thread Pool, Upstream, User ID,
+ XSLT.
+ .
+ MAIL MODULES: Mail Core, Auth HTTP, Proxy, SSL, IMAP, POP3, SMTP.
+ .
+ THIRD PARTY MODULES: Auth PAM, DAV Ext, Echo, HTTP Substitutions, Upstream
+ Fair Queue.
+
+Package: nginx-full-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: nginx-full (= ${binary:Version}), ${misc:Depends}
+Conflicts: nginx-extras-dbg, nginx-light-dbg, nginx-dev-steroidz-dbg
+Description: nginx web/proxy server (standard version) - debugging symbols
+ Nginx ("engine X") is a high-performance web and reverse proxy server
+ created by Igor Sysoev. It can be used both as a standalone web server
+ and as a proxy to reduce the load on back-end HTTP or mail servers.
+ .
+ This package provides debugging symbols for nginx-full, to assist in debugging
+ issues that you may find. It should not be required for normal operation.
+
+Package: nginx-light
+Architecture: any
+Priority: extra
+Depends: nginx-common (= ${source:Version}), ${misc:Depends}, ${shlibs:Depends}
+Breaks: nginx (<< 1.4.5-1)
+Provides: httpd, httpd-cgi, nginx
+Conflicts: nginx-extras, nginx-full, nginx-dev-steroidz
+Suggests: nginx-doc (= ${source:Version})
+Description: nginx web/proxy server (basic version)
+ Nginx ("engine X") is a high-performance web and reverse proxy server
+ created by Igor Sysoev. It can be used both as a standalone web server
+ and as a proxy to reduce the load on back-end HTTP or mail servers.
+ .
+ This package provides a very light version of nginx with only the
+ minimal set of features and modules.
+ .
+ STANDARD HTTP MODULES: Core, Access, Auth Basic, Auto Index, Empty GIF,
+ FastCGI, Map, Proxy, Rewrite.
+ .
+ OPTIONAL HTTP MODULES: Auth Request, Charset, Gzip, Gzip Precompression,
+ Headers, HTTP/2, Index, Log, Real IP, SSI, SSL, Stub Status, Thread Pool,
+ WebDAV, Upstream.
+ .
+ THIRD PARTY MODULES: Echo.
+
+Package: nginx-light-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: nginx-light (= ${binary:Version}), ${misc:Depends}
+Conflicts: nginx-extras-dbg, nginx-full-dbg, nginx-dev-steroidz-dbg
+Description: nginx web/proxy server (basic version) - debugging symbols
+ Nginx ("engine X") is a high-performance web and reverse proxy server
+ created by Igor Sysoev. It can be used both as a standalone web server
+ and as a proxy to reduce the load on back-end HTTP or mail servers.
+ .
+ This package provides debugging symbols for nginx-light, to assist in
+ debugging issues that you may find. It should not be required for normal
+ operation.
+
+Package: nginx-dev-steroidz
+Architecture: any
+Priority: extra
+Depends: nginx-common (= ${source:Version}),
+         libnginx-mod-http-geoip (= ${binary:Version}),
+         libnginx-mod-http-image-filter (= ${binary:Version}),
+         libnginx-mod-http-xslt-filter (= ${binary:Version}),
+         libnginx-mod-mail (= ${binary:Version}),
+         libnginx-mod-stream (= ${binary:Version}),
+         libnginx-mod-http-auth-pam (= ${binary:Version}),
+         libnginx-mod-http-lua (= ${binary:Version}),
+         libnginx-mod-http-perl (= ${binary:Version}),
+         libnginx-mod-http-array-var (= ${binary:Version}),
+         libnginx-mod-http-tile (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Breaks: nginx (<< 1.4.5-1)
+Provides: httpd, httpd-cgi, nginx
+Conflicts: nginx-full, nginx-light, nginx-extras
+Suggests: nginx-doc (= ${source:Version})
+Description: nginx web/proxy server (extended version)
+ Nginx ("engine X") is a high-performance web and reverse proxy server
+ created by Igor Sysoev. It can be used both as a standalone web server
+ and as a proxy to reduce the load on back-end HTTP or mail servers.
+ .
+ This package provides a version of nginx with the standard modules, plus
+ extra features and modules such as the Perl module, which allows the
+ addition of Perl in configuration files.
+ .
+ STANDARD HTTP MODULES: Core, Access, Auth Basic, Auto Index, Browser, Empty
+ GIF, FastCGI, Geo, Limit Connections, Limit Requests, Map, Memcached, Proxy,
+ Referer, Rewrite, SCGI, Split Clients, UWSGI.
+ .
+ OPTIONAL HTTP MODULES: Addition, Auth Request, Charset, WebDAV, FLV, GeoIP,
+ Gunzip, Gzip, Gzip Precompression, Headers, Image Filter, Index, Log, MP4,
+ Embedded Perl, Random Index, Real IP, Secure Link, Spdy, SSI, SSL, Stub
+ Status, Substitution, Upstream, User ID, XSLT.
+ .
+ MAIL MODULES: Mail Core, Auth HTTP, Proxy, SSL, IMAP, POP3, SMTP.
+ .
+ MODULES ADDED BY DOTDEB : Gunzip, File AIO, Thread pool, X-rid header, Push stream,
+ Naxsi, Auth LDAP, Pinba, PageSpeed, X-rid header, RTMP
+
+Package: nginx-dev-steroidz-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: nginx-dev-steroidz (= ${binary:Version}), ${misc:Depends}
+Conflicts: nginx-full-dbg, nginx-light-dbg, nginx-extras-dbg
+Description: nginx web/proxy server (extended version) - debugging symbols
+ Nginx ("engine X") is a high-performance web and reverse proxy server
+ created by Igor Sysoev. It can be used both as a standalone web server
+ and as a proxy to reduce the load on back-end HTTP or mail servers.
+ .
+ This package provides debugging symbols for nginx-dev-steroidz, to assist in
+ debugging issues that you may find. It should not be required for normal
+ operation.
+
+Package: nginx-extras
+Architecture: any
+Priority: extra
+Depends: nginx-common (= ${source:Version}),
+         libnginx-mod-http-geoip (= ${binary:Version}),
+         libnginx-mod-http-image-filter (= ${binary:Version}),
+         libnginx-mod-http-xslt-filter (= ${binary:Version}),
+         libnginx-mod-mail (= ${binary:Version}),
+         libnginx-mod-stream (= ${binary:Version}),
+         libnginx-mod-http-auth-pam (= ${binary:Version}),
+         libnginx-mod-http-lua (= ${binary:Version}),
+         libnginx-mod-http-perl (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Breaks: nginx (<< 1.4.5-1)
+Provides: httpd, httpd-cgi, nginx
+Conflicts: nginx-full, nginx-light, nginx-dev-steroidz
+Suggests: nginx-doc (= ${source:Version})
+Description: nginx web/proxy server (extended version)
+ Nginx ("engine X") is a high-performance web and reverse proxy server
+ created by Igor Sysoev. It can be used both as a standalone web server
+ and as a proxy to reduce the load on back-end HTTP or mail servers.
+ .
+ This package provides a version of nginx with the standard modules, plus
+ extra features and modules such as the Perl module, which allows the
+ addition of Perl in configuration files.
+ .
+ STANDARD HTTP MODULES: Core, Access, Auth Basic, Auto Index, Browser, Empty
+ GIF, FastCGI, Geo, Limit Connections, Limit Requests, Map, Memcached, Proxy,
+ Referer, Rewrite, SCGI, Split Clients, UWSGI.
+ .
+ OPTIONAL HTTP MODULES: Addition, Auth Request, Charset, WebDAV, FLV, GeoIP,
+ Gunzip, Gzip, Gzip Precompression, Headers, HTTP/2, Image Filter, Index, Log,
+ MP4, Embedded Perl, Random Index, Real IP, Secure Link, SSI, SSL, Stream,
+ Stub Status, Substitution, Thread Pool, Upstream, User ID, XSLT.
+ .
+ MAIL MODULES: Mail Core, Auth HTTP, Proxy, SSL, IMAP, POP3, SMTP.
+ .
+ THIRD PARTY MODULES: Auth PAM, Cache Purge, DAV Ext, Echo, Fancy Index,
+ Headers More, Embedded Lua, HTTP Push, HTTP Substitutions, Upload Progress,
+ Upstream Fair Queue.
+
+Package: nginx-extras-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: nginx-extras (= ${binary:Version}), ${misc:Depends}
+Conflicts: nginx-full-dbg, nginx-light-dbg, nginx-dev-steroidz-dbg
+Description: nginx web/proxy server (extended version) - debugging symbols
+ Nginx ("engine X") is a high-performance web and reverse proxy server
+ created by Igor Sysoev. It can be used both as a standalone web server
+ and as a proxy to reduce the load on back-end HTTP or mail servers.
+ .
+ This package provides debugging symbols for nginx-extras, to assist in
+ debugging issues that you may find. It should not be required for normal
+ operation.
+
+Package: libnginx-mod-http-geoip
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: GeoIP HTTP module for Nginx
+ The ngx_http_geoip module creates variables with values depending on the
+ client IP address, using the precompiled MaxMind databases.
+ .
+ Those variables include country, region, city, latitude, longitude, postal
+ code, etc.
+
+Package: libnginx-mod-http-image-filter
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: HTTP image filter module for Nginx
+ The ngx_http_image_filter module is a filter that transforms images in JPEG,
+ GIF, and PNG formats.
+ .
+ The module supports filters such as rotate, resize, crop, quality, sharpening,
+ interlacing and more.
+
+Package: libnginx-mod-http-xslt-filter
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: XSLT Transformation module for Nginx
+ The ngx_http_xslt_filter module is a filter that transforms XML responses
+ using one or more XSLT stylesheets.
+ .
+ The transformation can be adjusted by setting the relevant configuration
+ parameters.
+
+Package: libnginx-mod-mail
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Mail module for Nginx
+ The nginx_mail module adds mail proxy support to nginx.
+ .
+ The module supports proxying all the standard mail protocols such as IMAP,
+ POP3 & SMTP.
+
+Package: libnginx-mod-stream
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Stream module for Nginx
+ The nginx_stream module adds stream proxy support to nginx.
+ .
+ Stream module supports loadbalancing & proxying to TCP servers. The module
+ also supports ACLs/connection limiting and configuring multiple operational
+ parameters.
+
+Package: libnginx-mod-http-perl
+Architecture: any
+Depends: ${perl:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Replaces: nginx-extras (<< 1.9.14-1)
+Description: Perl module for Nginx
+ Embed Perl runtime into nginx.
+ .
+ The ngx_http_perl module is used to implement location and variable handlers
+ in Perl and insert Perl calls into SSI.
+ .
+ Note that this module is marked experimental.
+
+Package: libnginx-mod-http-auth-pam
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: PAM authentication module for Nginx
+ The nginx_http_auth_pam module enables authentication using PAM.
+ .
+ The module uses PAM as a backend for simple http authentication. It
+ also allows setting the pam service name to allow more fine grained control.
+
+Package: libnginx-mod-http-lua
+Architecture: any
+Depends: libnginx-mod-http-ndk (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
+Description: LUA module for Nginx
+ Embed LUA runtime into nginx.
+ .
+ This module embeds Lua, via the standard Lua 5.1 interpreter or LuaJIT
+ 2.0/2.1, into Nginx and by leveraging Nginx's subrequests, allows the
+ integration of the powerful Lua threads (Lua coroutines) into the Nginx event
+ model.
+
+Package: libnginx-mod-http-ndk
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Nginx Development Kit module
+ The NDK is an Nginx module that is designed to extend the core functionality of
+ the excellent Nginx webserver in a way that can be used as a basis of other
+ Nginx modules.
+ .
+ It has functions and macros to deal with generic tasks that don't currently
+ have generic code as part of the core distribution. The NDK itself adds few
+ features that are seen from a user's point of view - it's just designed to help
+ reduce the code that Nginx module developers need to write.  Embed LUA runtime
+ into nginx.
+
+Package: libnginx-mod-http-array-var
+Architecture: any
+Depends: libnginx-mod-http-ndk (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
+Description: Nginx array vars module
+ Add support for array-typed variables to nginx config files.
+
+Package: libnginx-mod-http-tile
+Architecture: any
+Depends: libnginx-mod-http-ndk (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
+Description: Nginx Tiles module
+ Convert XYZ coordinates from URL into the path on filesystem.
