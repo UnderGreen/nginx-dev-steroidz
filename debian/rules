@@ -166,7 +166,6 @@ dev-steroidz_configure_flags := \
 			--add-module=$(MODULESDIR)/nginx-sla \
 			--add-module=$(MODULESDIR)/nginx-srcache \
 			--add-dynamic-module=$(MODULESDIR)/nginx-tile \
-			--add-module=$(MODULESDIR)/nginx-x-rid-header \
 			--add-module=$(MODULESDIR)/ngx_http_accounting \
 			--add-module=$(MODULESDIR)/ngx_http_pinba_module \
 			--add-module=$(MODULESDIR)/ngx_ip_tos
